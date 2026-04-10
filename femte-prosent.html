@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Det er ikke 12% som betaler. Det er 5%. – HelpTruth News</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#0f0e0c;
+  --ink2:#2a2825;
+  --ink3:#5a5750;
+  --paper:#f5f0e8;
+  --paper2:#ede8dc;
+  --paper3:#e2dcd0;
+  --red:#c0392b;
+  --green:#1a6b3c;
+  --gold:#b8860b;
+  --border:#c8c0b0;
+  --font-display:Georgia,'Times New Roman',serif;
+  --font-body:Georgia,'Times New Roman',serif;
+  --font-mono:'Courier New',Courier,monospace;
+}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  max-width:860px;
+  margin:0 auto;
+  font-size:16px;
+}
+
+/* TOPBAR */
+.topbar{
+  background:var(--ink);
+  padding:12px 36px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border-bottom:3px solid var(--red);
+}
+.topbar-logo{
+  font-family:var(--font-display);
+  font-size:22px;
+  font-weight:bold;
+  color:#fff;
+  letter-spacing:-0.5px;
+}
+.topbar-badge{
+  background:var(--red);
+  color:#fff;
+  font-family:var(--font-mono);
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  padding:2px 8px;
+}
+.topbar-nav{
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:#666;
+  margin-left:16px;
+  letter-spacing:0.5px;
+}
+.topbar-nav span{color:var(--red);}
+
+/* HERO */
+.hero{
+  background:var(--ink);
+  padding:48px 40px 40px;
+  border-bottom:4px solid var(--red);
+  position:relative;
+  overflow:hidden;
+}
+.hero-kicker{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:16px;
+}
+.hero-title{
+  font-family:var(--font-display);
+  font-size:52px;
+  font-weight:bold;
+  line-height:1.05;
+  color:#fff;
+  margin-bottom:20px;
+  max-width:660px;
+}
+.hero-title em{
+  color:var(--red);
+  font-style:normal;
+}
+.hero-deck{
+  font-size:18px;
+  line-height:1.6;
+  color:#bbb;
+  font-style:italic;
+  max-width:600px;
+  border-left:3px solid var(--red);
+  padding-left:18px;
+  margin-bottom:28px;
+}
+.hero-byline{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:#666;
+  margin-bottom:20px;
+}
+.hero-byline strong{color:#999;}
+.hero-stats{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.hero-stat{
+  padding:14px 20px;
+  border:1px solid #333;
+  background:rgba(192,57,43,0.12);
+  text-align:center;
+  min-width:120px;
+}
+.hero-stat-num{
+  font-family:var(--font-display);
+  font-size:32px;
+  font-weight:bold;
+  color:var(--red);
+  line-height:1;
+}
+.hero-stat-label{
+  font-family:var(--font-mono);
+  font-size:8px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#777;
+  margin-top:6px;
+  line-height:1.4;
+}
+
+/* ARTICLE */
+.article{
+  max-width:720px;
+  margin:0 auto;
+  padding:0 32px;
+}
+.art-body{padding:40px 0;}
+
+.art-body p{
+  font-size:18px;
+  line-height:1.8;
+  color:var(--ink2);
+  margin-bottom:22px;
+}
+.art-body p.lead{
+  font-size:20px;
+  font-weight:bold;
+  color:var(--ink);
+  line-height:1.65;
+}
+.art-body p:first-child::first-letter{
+  font-family:var(--font-display);
+  font-size:80px;
+  font-weight:bold;
+  float:left;
+  line-height:0.72;
+  padding-right:10px;
+  padding-top:10px;
+  color:var(--red);
+}
+.art-body h2{
+  font-family:var(--font-display);
+  font-size:26px;
+  font-weight:bold;
+  color:var(--ink);
+  margin:44px 0 14px;
+  border-top:2px solid var(--border);
+  padding-top:22px;
+}
+
+/* FLOW DIAGRAM */
+.flow-wrap{
+  margin:36px 0;
+  background:var(--ink);
+  padding:32px 28px;
+  color:#fff;
+}
+.flow-title{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:24px;
+}
+.flow-grid{
+  display:flex;
+  align-items:stretch;
+  gap:0;
+  margin-bottom:24px;
+}
+.flow-box{
+  flex:1;
+  padding:20px 14px;
+  text-align:center;
+  border:1px solid #333;
+}
+.flow-box.private{border-color:#1a6b3c;background:rgba(26,107,60,0.18);}
+.flow-box.state{border-color:var(--red);background:rgba(192,57,43,0.18);}
+.flow-box.recipient{border-color:#444;background:rgba(255,255,255,0.04);}
+.flow-box-pct{
+  font-family:var(--font-display);
+  font-size:28px;
+  font-weight:bold;
+  line-height:1;
+}
+.flow-box-pct.green{color:#4ade80;}
+.flow-box-pct.red{color:var(--red);}
+.flow-box-pct.gray{color:#888;}
+.flow-box-label{
+  font-family:var(--font-mono);
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#888;
+  margin-top:6px;
+}
+.flow-box-desc{
+  font-size:12px;
+  color:#aaa;
+  margin-top:8px;
+  line-height:1.4;
+}
+.flow-arrow{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:0 8px;
+  gap:4px;
+  min-width:50px;
+}
+.arrow-sym{
+  font-size:22px;
+}
+.arrow-sym.green{color:#4ade80;}
+.arrow-sym.red{color:var(--red);}
+.arrow-lbl{
+  font-family:var(--font-mono);
+  font-size:9px;
+  color:#555;
+  text-align:center;
+  letter-spacing:0.5px;
+}
+.flow-note{
+  background:rgba(192,57,43,0.12);
+  border:1px solid rgba(192,57,43,0.35);
+  padding:18px 20px;
+  margin-top:4px;
+}
+.flow-note-title{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:10px;
+}
+.flow-note-text{
+  font-size:14px;
+  color:#ccc;
+  line-height:1.6;
+}
+.flow-note-text strong{color:#fff;}
+
+/* ILLUSION BOX */
+.illusion-wrap{
+  margin:32px 0;
+  background:var(--paper2);
+  border:1px solid var(--border);
+  padding:28px;
+}
+.illusion-title{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:20px;
+}
+.illusion-section{margin-bottom:22px;}
+.illusion-section-label{
+  font-family:var(--font-mono);
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--ink3);
+  margin-bottom:12px;
+  padding-bottom:6px;
+  border-bottom:1px dashed var(--border);
+}
+.illusion-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+  flex-wrap:wrap;
+}
+.illusion-lbl{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--ink3);
+  min-width:150px;
+}
+.pill{
+  padding:8px 14px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+.pill.state-out{background:var(--red);color:#fff;}
+.pill.tax-back{background:#555;color:#fff;}
+.pill.real{background:var(--green);color:#fff;}
+.arrow-s{font-size:16px;color:var(--ink3);}
+.result{
+  margin-top:12px;
+  padding:12px 16px;
+  border-left:3px solid;
+  font-family:var(--font-mono);
+  font-size:13px;
+}
+.result.neg{border-color:var(--red);background:#fdf0ef;color:var(--red);}
+.result.pos{border-color:var(--green);background:#f0f7f3;color:var(--green);}
+
+/* KEY NUMBER */
+.key-number-box{
+  background:var(--red);
+  color:#fff;
+  padding:48px 36px;
+  margin:36px 0;
+  text-align:center;
+}
+.key-number{
+  font-family:var(--font-display);
+  font-size:96px;
+  font-weight:bold;
+  line-height:1;
+  display:block;
+}
+.key-number-label{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.65);
+  margin-top:12px;
+}
+.key-number-sub{
+  font-size:16px;
+  color:rgba(255,255,255,0.82);
+  margin-top:14px;
+  font-style:italic;
+  line-height:1.55;
+  max-width:500px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* PULLQUOTE */
+.pullquote{
+  background:var(--ink);
+  color:#fff;
+  padding:32px 36px;
+  margin:40px -32px;
+}
+.pullquote-text{
+  font-family:var(--font-display);
+  font-size:24px;
+  font-weight:bold;
+  font-style:italic;
+  line-height:1.35;
+  margin-bottom:12px;
+}
+.pullquote-source{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:1px;
+  color:#555;
+  text-transform:uppercase;
+}
+
+/* MATH BOX */
+.math-box{
+  background:var(--paper2);
+  border:1px solid var(--border);
+  border-left:4px solid var(--gold);
+  padding:28px 30px;
+  margin:32px 0;
+}
+.math-title{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:18px;
+}
+.math-line{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  padding:10px 0;
+  border-bottom:1px solid var(--paper3);
+  font-size:16px;
+  color:var(--ink2);
+}
+.math-line:last-child{
+  border-bottom:none;
+  font-weight:bold;
+  font-size:18px;
+  color:var(--ink);
+  padding-top:16px;
+}
+.math-val{
+  font-family:var(--font-mono);
+  font-size:14px;
+}
+.math-val.pos{color:var(--green);}
+.math-val.neg{color:var(--red);}
+.math-val.neu{color:var(--ink3);}
+
+/* TAGS + CTA */
+.art-tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:28px 0;
+}
+.tag{
+  font-family:var(--font-mono);
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  border:1px solid var(--border);
+  padding:5px 12px;
+  color:var(--ink3);
+}
+.art-cta{
+  background:var(--ink);
+  color:#fff;
+  padding:32px 36px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  flex-wrap:wrap;
+  margin-top:12px;
+  margin-bottom:0;
+}
+.art-cta-title{
+  font-family:var(--font-display);
+  font-size:20px;
+  font-weight:bold;
+  color:#fff;
+  margin-bottom:6px;
+}
+.art-cta-sub{
+  font-size:14px;
+  color:#888;
+  line-height:1.6;
+}
+.art-cta-btn{
+  background:var(--red);
+  color:#fff;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  padding:16px 28px;
+  text-decoration:none;
+  white-space:nowrap;
+  display:inline-block;
+}
+
+/* FOOTER */
+footer{
+  background:#0a0a08;
+  color:#555;
+  padding:24px 36px;
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.5px;
+  line-height:1.9;
+}
+footer strong{color:#888;}
+
+/* DIVIDER */
+.divider{
+  border:none;
+  border-top:1px solid var(--border);
+  margin:8px 0;
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="topbar-logo">HelpTruth</span>
+  <span class="topbar-badge">News</span>
+  <span class="topbar-nav">&#9670; <span>Dybdeanalyse</span> &nbsp;&middot;&nbsp; Politikk &amp; &Oslash;konomi &nbsp;&middot;&nbsp; Del 3 av 3</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-kicker">&#9670; Eksklusiv analyse &middot; Norsk stats&oslash;konomi</div>
+  <h1 class="hero-title">Det er ikke 12% som betaler.<br>Det er <em>5%.</em></h1>
+  <div class="hero-deck">
+    Offentlig ansatte betaler skatt av statens egne penger. Det er ikke kapital inn i systemet &ndash; det er samme krone som sirkulerer. Kun privat sektors nettoskatt tilf&oslash;rer ny kapital. Og den gruppen er langt mindre enn du tror.
+  </div>
+  <div class="hero-byline">Av <strong>Redaksjonen, HelpTruth News</strong> &nbsp;&middot;&nbsp; 9. april 2026 &nbsp;&middot;&nbsp; 10 min lesing</div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">5%</div>
+      <div class="hero-stat-label">Reelle netto<br>skattebetalere</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">95%</div>
+      <div class="hero-stat-label">I den lukkede<br>sl&oslash;yfen</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">0 kr</div>
+      <div class="hero-stat-label">Netto ny kapital<br>fra off. ansatte</div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article">
+<div class="art-body">
+
+<p class="lead">Vi viste deg forrige uke at kun 12 prosent av nordmenn jobber i reell konkurranseutsatt privat sektor. Men det er faktisk ikke de 12 prosentene som finansierer de resterende 88. Sannheten er verre.</p>
+
+<p>For &aring; forst&aring; hvem som virkelig betaler for den norske staten, m&aring; du forst&aring; &eacute;n fundamental forskjell: <strong>ny kapital inn i systemet</strong> versus <strong>penger som sirkulerer inni systemet.</strong> Det er her de fleste &ndash; og nesten alle politikere &ndash; tar feil. Eller later som de tar feil.</p>
+
+<!-- FLOW DIAGRAM -->
+<div class="flow-wrap">
+  <div class="flow-title">&#9670; Pengeflyten i norsk &oslash;konomi &ndash; hvem tilf&oslash;rer faktisk ny kapital?</div>
+  <div class="flow-grid">
+    <div class="flow-box private">
+      <div class="flow-box-pct green">~12%</div>
+      <div class="flow-box-label">Privat sektor</div>
+      <div class="flow-box-desc">Konkurranseutsatt. Skaper verdier solgt til markedet. Finansieres utenfra.</div>
+    </div>
+    <div class="flow-arrow">
+      <div class="arrow-sym green">&rarr;</div>
+      <div class="arrow-lbl">Netto<br>skatt</div>
+    </div>
+    <div class="flow-box state">
+      <div class="flow-box-pct red">Staten</div>
+      <div class="flow-box-label">Omfordeler</div>
+      <div class="flow-box-desc">Mottar skatt. Betaler ut l&oslash;nn, trygd, pensjon &ndash; og mottar deler tilbake som skatt igjen.</div>
+    </div>
+    <div class="flow-arrow">
+      <div class="arrow-sym red">&rarr;</div>
+      <div class="arrow-lbl">L&oslash;nn +<br>overf.</div>
+    </div>
+    <div class="flow-box recipient">
+      <div class="flow-box-pct gray">~88%</div>
+      <div class="flow-box-label">Mottakere</div>
+      <div class="flow-box-desc">Off. ansatte, pensjonister, trygdede, barn. Betaler skatt av statens egne penger. Lukket sl&oslash;yfe.</div>
+    </div>
+  </div>
+  <div class="flow-note">
+    <div class="flow-note-title">&#9670; N&oslash;kkelpunktet ingen forklarer deg</div>
+    <div class="flow-note-text">N&aring;r en offentlig ansatt betaler 40% skatt av l&oslash;nnen sin, g&aring;r de pengene tilbake til det samme budsjettet de ble hentet fra. Staten betalte ut 100 kr, fikk 40 kr tilbake &ndash; og nettet 60 kr i faktisk utgift. <strong>Det er ikke to transaksjoner. Det er &eacute;n.</strong> Ingen ny kapital har kommet inn i systemet.</div>
+  </div>
+</div>
+
+<h2>Illusjonen om offentlig skatt</h2>
+
+<p>Her er tankeeksperimentet som avsl&oslash;rer det: Se for deg at staten ansetter &eacute;n million ekstra byr&aring;krater i morgen. Alle betaler 40% skatt. Vil statens skatteinntekter &oslash;ke? Teknisk sett &ndash; ja, i statistikken. Men statens nettoutgifter vil &oslash;ke med n&oslash;yaktig samme bel&oslash;p minus skatten. Det er ikke ny kapital. Det er bokf&oslash;ring. Det er r&oslash;yk.</p>
+
+<!-- ILLUSION BOX -->
+<div class="illusion-wrap">
+  <div class="illusion-title">&#9670; Skatteilllusjonen &ndash; samme krone, to ganger</div>
+
+  <div class="illusion-section">
+    <div class="illusion-section-label">Scenario A &ndash; Offentlig ansatt (lukket sl&oslash;yfe)</div>
+    <div class="illusion-row">
+      <div class="illusion-lbl">Staten betaler l&oslash;nn</div>
+      <div class="pill state-out">Ut: 100 kr</div>
+      <div class="arrow-s">&rarr;</div>
+      <div class="pill tax-back">Ansatt mottar 100 kr</div>
+    </div>
+    <div class="illusion-row">
+      <div class="illusion-lbl">Skatt tilbake</div>
+      <div class="pill tax-back">Ansatt betaler 40 kr skatt</div>
+      <div class="arrow-s">&rarr;</div>
+      <div class="pill state-out">Inn: 40 kr</div>
+    </div>
+    <div class="result neg">Netto for staten: &minus;60 kr &nbsp;&middot;&nbsp; Null ny kapital inn i systemet</div>
+  </div>
+
+  <hr class="divider" style="margin:20px 0;">
+
+  <div class="illusion-section">
+    <div class="illusion-section-label">Scenario B &ndash; Privat ansatt (ekte kapital inn)</div>
+    <div class="illusion-row">
+      <div class="illusion-lbl">Markedet betaler l&oslash;nn</div>
+      <div class="pill real">Ut fra marked: 100 kr</div>
+      <div class="arrow-s">&rarr;</div>
+      <div class="pill real">Ansatt mottar 100 kr</div>
+    </div>
+    <div class="illusion-row">
+      <div class="illusion-lbl">Skatt til staten</div>
+      <div class="pill real">Ansatt betaler 40 kr skatt</div>
+      <div class="arrow-s">&rarr;</div>
+      <div class="pill real">Staten: +40 kr</div>
+    </div>
+    <div class="result pos">Netto for staten: +40 kr ekte ny kapital &ndash; finansiert utenfra</div>
+  </div>
+</div>
+
+<h2>Hvem er de egentlige netto-skattebetalerne?</h2>
+
+<p>N&aring;r vi trekker fra offentlig ansatte, pensjonister, trygdemottakere og barn &ndash; og ser p&aring; hvem som faktisk tilf&oslash;rer ny kapital til staten gjennom arbeid finansiert av private markeder &ndash; snakker vi om en gruppe som er enda mindre enn de 12 prosentene vi presenterte sist.</p>
+
+<p>Legg til at en betydelig del av de &laquo;private&raquo; jobbene i Norge er i sektorer med massiv offentlig finansiering &ndash; sykehus p&aring; anbud, NAV-leverand&oslash;rer, vei- og byggebransjen som lever av offentlige kontrakter &ndash; og bildet blir enda m&oslash;rkere.</p>
+
+<!-- KEY NUMBER -->
+<div class="key-number-box">
+  <span class="key-number">~5%</span>
+  <div class="key-number-label">&#9670; Estimert andel av befolkningen som tilf&oslash;rer reell netto ny kapital til staten</div>
+  <div class="key-number-sub">Disse er de eneste som ikke finansieres av statens egne midler &ndash; direkte eller indirekte. De resterende 95% er i en lukket regnskapssl&oslash;yfe.</div>
+</div>
+
+<!-- MATH -->
+<div class="math-box">
+  <div class="math-title">&#9670; Regnestykket &ndash; netto ny kapital, hvem bidrar?</div>
+  <div class="math-line">
+    <span>Total befolkning</span>
+    <span class="math-val neu">5 500 000</span>
+  </div>
+  <div class="math-line">
+    <span>&mdash; Offentlig ansatte (l&oslash;nn fra staten)</span>
+    <span class="math-val neg">&minus;1 650 000 &nbsp;(30%)</span>
+  </div>
+  <div class="math-line">
+    <span>&mdash; Pensjonister</span>
+    <span class="math-val neg">&minus;1 100 000 &nbsp;(20%)</span>
+  </div>
+  <div class="math-line">
+    <span>&mdash; Uf&oslash;re, AAP, dagpenger</span>
+    <span class="math-val neg">&minus;605 000 &nbsp;(11%)</span>
+  </div>
+  <div class="math-line">
+    <span>&mdash; Barn og studenter</span>
+    <span class="math-val neg">&minus;1 210 000 &nbsp;(22%)</span>
+  </div>
+  <div class="math-line">
+    <span>&mdash; Privat, men off.-finansiert n&aelig;ring</span>
+    <span class="math-val neg">&minus;660 000 &nbsp;(~8%)</span>
+  </div>
+  <div class="math-line">
+    <span>= Reelle netto skattebetalere</span>
+    <span class="math-val pos">~275 000 &nbsp;(~5%)</span>
+  </div>
+</div>
+
+<div class="pullquote">
+  <div class="pullquote-text">&laquo;275 000 nordmenn finansierer i realiteten velferdsstaten for 5,5 millioner. Og ingen av dem fikk stemme p&aring; om det var greit.&raquo;</div>
+  <div class="pullquote-source">&mdash; HelpTruth News, redaksjonell analyse, april 2026</div>
+</div>
+
+<h2>Oljefondet &ndash; tidsinnstilt bombe eller evig redning?</h2>
+
+<p>Den &aring;penbare innvendingen er oljefondet. Det er sant at en stor del av offentlige utgifter finansieres av oljefondets avkastning &ndash; ikke av skatt fra privat sektor alene. Men det gj&oslash;r ikke regnestykket bedre. Det betyr at vi i tillegg til et uholdbart forhold mellom betalere og mottakere, ogs&aring; er avhengige av en formue bygget p&aring; &eacute;n naturressurs som gradvis t&oslash;mmes.</p>
+
+<p>Perspektivmeldingen 2024 er klar: etter hvert som oljefondet slutter &aring; vokse raskere enn BNP, vil en stadig st&oslash;rre andel av offentlige utgifter m&aring;tte finansieres av skatter fra fastlands&oslash;konomien. Den fastlands&oslash;konomien der omtrent 5 prosent av befolkningen er netto bidragsytere.</p>
+
+<p>Det er ikke b&aelig;rekraft. Det er utsettelse. Og norske medier &ndash; finansiert av statens pressest&oslash;tte &ndash; har liten interesse av &aring; si det h&oslash;yt.</p>
+
+<div class="art-tags">
+  <span class="tag">Skatteanalyse</span>
+  <span class="tag">Offentlig &oslash;konomi</span>
+  <span class="tag">Pengeflyt</span>
+  <span class="tag">Oljefond</span>
+  <span class="tag">Privat sektor</span>
+  <span class="tag">SSB</span>
+  <span class="tag">NAV</span>
+  <span class="tag">OECD</span>
+</div>
+
+<div class="art-cta">
+  <div>
+    <div class="art-cta-title">Dette er journalistikk ingen andre lager</div>
+    <div class="art-cta-sub">HelpTruth News er 100% leserbetalt. Ingen pressest&oslash;tte. Ingen annons&oslash;rhensyn. Ingen filter.</div>
+  </div>
+  <a class="art-cta-btn" href="#">St&oslash;tt oss &ndash; 99 kr/mnd &rarr;</a>
+</div>
+
+</div>
+</div>
+
+<footer>
+  <strong>HelpTruth News</strong> &nbsp;&middot;&nbsp; Uavhengig &middot; Ubetalt &middot; Usensurert<br>
+  Kilder: OECD Government at a Glance 2023 &middot; SSB &middot; NAV &middot; Finansdepartementet &middot; Perspektivmeldingen 2024<br>
+  &copy; 2026 HelpTruth Media AS &nbsp;&middot;&nbsp; helptruth.no
+</footer>
+
+</body>
+</html>

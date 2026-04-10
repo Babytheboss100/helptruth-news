@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HelpTruth News – Sannheten ingen andre forteller</title>
+<meta name="description" content="Uavhengig norsk nyhetsanalyse. Ingen pressestøtte. Ingen filter. Bare tall og fakta.">
+<meta property="og:title" content="HelpTruth News">
+<meta property="og:description" content="Sannheten ingen andre forteller. Norsk økonomi, statsfinans og samfunn – uten filter.">
+<meta property="og:type" content="website">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,700&family=Space+Mono:wght@400;700&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --red:#c0392b;
+  --gold:#c8961a;
+  --ink:#0a0906;
+  --paper:#f2ede4;
+  --paper2:#e8e1d6;
+  --paper3:#ddd5c8;
+  --border:#bfb49e;
+  --fd:'Playfair Display',Georgia,serif;
+  --fm:'Space Mono',monospace;
+}
+
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--fd);
+  max-width:1000px;
+  margin:0 auto;
+}
+
+/* TOPBAR */
+.topbar{
+  background:var(--ink);
+  padding:0 40px;
+  display:flex;
+  align-items:stretch;
+  border-bottom:3px solid var(--red);
+}
+.topbar-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 0;
+  border-right:1px solid #222;
+  padding-right:24px;
+  margin-right:24px;
+}
+.logo{
+  font-family:var(--fd);
+  font-size:26px;
+  font-weight:900;
+  color:#fff;
+  letter-spacing:-1px;
+  text-decoration:none;
+}
+.badge{
+  background:var(--red);
+  color:#fff;
+  font-family:var(--fm);
+  font-size:8px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:3px 10px;
+}
+.topnav{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  flex:1;
+}
+.topnav a{
+  font-family:var(--fm);
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#555;
+  text-decoration:none;
+  transition:color 0.2s;
+}
+.topnav a:hover{color:var(--red);}
+.topbar-right{
+  display:flex;
+  align-items:center;
+  margin-left:auto;
+}
+.sub-btn{
+  background:var(--red);
+  color:#fff;
+  font-family:var(--fm);
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:10px 18px;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:background 0.2s;
+}
+.sub-btn:hover{background:#9b2d22;}
+
+/* DATE BAR */
+.datebar{
+  background:var(--paper2);
+  border-bottom:1px solid var(--border);
+  padding:8px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.datebar-date{font-family:var(--fm);font-size:9px;letter-spacing:1px;color:#888;text-transform:uppercase;}
+.datebar-tag{font-family:var(--fm);font-size:9px;letter-spacing:1px;color:var(--red);text-transform:uppercase;}
+
+/* HERO ARTICLE */
+.hero-art{
+  display:grid;
+  grid-template-columns:1fr 380px;
+  gap:0;
+  border-bottom:2px solid var(--ink);
+}
+.hero-content{
+  padding:48px 40px;
+  border-right:1px solid var(--border);
+}
+.hero-kicker{
+  font-family:var(--fm);
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:14px;
+}
+.hero-h{
+  font-family:var(--fd);
+  font-size:clamp(28px,4vw,46px);
+  font-weight:900;
+  line-height:1.05;
+  color:var(--ink);
+  margin-bottom:16px;
+  letter-spacing:-1px;
+}
+.hero-h em{color:var(--red);font-style:italic;}
+.hero-deck{
+  font-size:16px;
+  line-height:1.7;
+  color:#4a4038;
+  margin-bottom:24px;
+  font-family:var(--fd);
+  font-style:italic;
+}
+.hero-meta{
+  font-family:var(--fm);
+  font-size:9px;
+  letter-spacing:1px;
+  color:#999;
+  margin-bottom:20px;
+  text-transform:uppercase;
+}
+.read-btn{
+  display:inline-block;
+  background:var(--ink);
+  color:#fff;
+  font-family:var(--fm);
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:12px 22px;
+  text-decoration:none;
+  transition:background 0.2s;
+}
+.read-btn:hover{background:var(--red);}
+
+.hero-stats{
+  padding:32px 28px;
+  background:var(--ink);
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+.hero-stat{
+  padding:20px 0;
+  border-bottom:1px solid #1a1510;
+}
+.hero-stat:last-child{border-bottom:none;}
+.hs-num{
+  font-family:var(--fd);
+  font-size:36px;
+  font-weight:900;
+  color:var(--red);
+  line-height:1;
+  display:block;
+}
+.hs-label{
+  font-family:var(--fm);
+  font-size:8px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#555;
+  margin-top:6px;
+  line-height:1.5;
+  display:block;
+}
+
+/* DIVIDER */
+.section-label{
+  padding:10px 40px;
+  background:var(--ink);
+  border-top:1px solid #111;
+  border-bottom:1px solid #111;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.sl-text{
+  font-family:var(--fm);
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#444;
+}
+.sl-line{flex:1;height:1px;background:#1e1a14;}
+
+/* ARTICLE GRID */
+.art-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border-bottom:2px solid var(--ink);
+}
+.art-card{
+  padding:36px 36px;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  transition:background 0.2s;
+  position:relative;
+}
+.art-card:nth-child(even){border-right:none;}
+.art-card:hover{background:var(--paper2);}
+.art-kicker{
+  font-family:var(--fm);
+  font-size:8px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:10px;
+}
+.art-h{
+  font-family:var(--fd);
+  font-size:22px;
+  font-weight:700;
+  line-height:1.15;
+  color:var(--ink);
+  margin-bottom:12px;
+  letter-spacing:-0.3px;
+}
+.art-h em{color:var(--red);font-style:italic;}
+.art-deck{
+  font-size:14px;
+  line-height:1.7;
+  color:#5a5048;
+  margin-bottom:18px;
+  font-style:italic;
+}
+.art-meta{
+  font-family:var(--fm);
+  font-size:8px;
+  letter-spacing:1px;
+  color:#aaa;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.art-link{
+  font-family:var(--fm);
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--red);
+  text-decoration:none;
+  border-bottom:1px solid var(--red);
+  padding-bottom:2px;
+  transition:opacity 0.2s;
+}
+.art-link:hover{opacity:0.7;}
+
+/* NUMBERS BAR */
+.numbers-bar{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border-bottom:2px solid var(--ink);
+  background:var(--ink);
+}
+.nb{
+  padding:28px 24px;
+  border-right:1px solid #1a1510;
+  text-align:center;
+}
+.nb:last-child{border-right:none;}
+.nb-num{
+  font-family:var(--fd);
+  font-size:32px;
+  font-weight:900;
+  color:var(--red);
+  display:block;
+  line-height:1;
+}
+.nb-label{
+  font-family:var(--fm);
+  font-size:8px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#444;
+  margin-top:8px;
+  display:block;
+  line-height:1.5;
+}
+
+/* EMAIL SIGNUP */
+.signup{
+  background:var(--ink);
+  padding:56px 40px;
+  border-bottom:3px solid var(--red);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+.signup-left h2{
+  font-family:var(--fd);
+  font-size:36px;
+  font-weight:900;
+  color:#fff;
+  line-height:1.1;
+  letter-spacing:-1px;
+  margin-bottom:12px;
+}
+.signup-left h2 em{color:var(--red);font-style:italic;}
+.signup-left p{
+  font-family:var(--fm);
+  font-size:11px;
+  color:#555;
+  line-height:1.8;
+  letter-spacing:0.3px;
+}
+.signup-form{display:flex;flex-direction:column;gap:12px;}
+.signup-field{
+  background:rgba(255,255,255,0.05);
+  border:1px solid #222;
+  color:#fff;
+  font-family:var(--fm);
+  font-size:12px;
+  padding:14px 16px;
+  outline:none;
+  transition:border 0.2s;
+  width:100%;
+}
+.signup-field::placeholder{color:#444;}
+.signup-field:focus{border-color:var(--red);}
+.signup-submit{
+  background:var(--red);
+  color:#fff;
+  font-family:var(--fm);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:16px;
+  border:none;
+  cursor:pointer;
+  transition:background 0.2s;
+  width:100%;
+}
+.signup-submit:hover{background:#9b2d22;}
+.signup-note{
+  font-family:var(--fm);
+  font-size:9px;
+  color:#333;
+  letter-spacing:0.5px;
+  line-height:1.6;
+}
+.signup-success{
+  display:none;
+  background:rgba(26,107,60,0.2);
+  border:1px solid #1a6b3c;
+  color:#88ffaa;
+  font-family:var(--fm);
+  font-size:11px;
+  padding:16px;
+  letter-spacing:0.5px;
+  line-height:1.6;
+}
+
+/* MANIFESTO */
+.manifesto{
+  padding:48px 40px;
+  border-bottom:1px solid var(--border);
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:40px;
+  align-items:start;
+}
+.manifesto-label{
+  font-family:var(--fm);
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--red);
+  padding-top:4px;
+}
+.manifesto-text{
+  font-family:var(--fd);
+  font-size:18px;
+  line-height:1.8;
+  color:#3a3028;
+  font-style:italic;
+}
+.manifesto-text strong{
+  color:var(--ink);
+  font-style:normal;
+  font-weight:700;
+}
+
+/* FOOTER */
+footer{
+  background:var(--ink);
+  color:#333;
+  padding:32px 40px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:32px;
+  border-top:1px solid #111;
+}
+.ft{font-family:var(--fm);font-size:9px;letter-spacing:0.5px;line-height:2;}
+.ft strong{color:#666;letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;}
+.ft a{color:#444;text-decoration:none;}
+.ft a:hover{color:var(--red);}
+.ft-logo{
+  font-family:var(--fd);
+  font-size:20px;
+  font-weight:900;
+  color:#fff;
+  display:block;
+  margin-bottom:8px;
+}
+.ft-copy{
+  font-family:var(--fm);
+  font-size:8px;
+  color:#222;
+  letter-spacing:0.5px;
+  line-height:2;
+  grid-column:1/-1;
+  border-top:1px solid #111;
+  padding-top:16px;
+  margin-top:8px;
+}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .hero-art{grid-template-columns:1fr;}
+  .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+  .hero-stat{border-right:1px solid #1a1510;border-bottom:none;}
+  .art-grid{grid-template-columns:1fr;}
+  .art-card{border-right:none;}
+  .numbers-bar{grid-template-columns:1fr 1fr;}
+  .signup{grid-template-columns:1fr;}
+  .manifesto{grid-template-columns:1fr;}
+  .footer{grid-template-columns:1fr;}
+  .topbar{padding:0 20px;}
+  .hero-content,.inner-content{padding:28px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="/" class="logo">HelpTruth</a>
+    <span class="badge">News</span>
+  </div>
+  <nav class="topnav">
+    <a href="#artikler">Artikler</a>
+    <a href="#om">Om oss</a>
+    <a href="#signup">Abonnér</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="#signup" class="sub-btn">99 kr/mnd &rarr;</a>
+  </div>
+</div>
+
+<!-- DATE BAR -->
+<div class="datebar">
+  <span class="datebar-date">Fredag 10. april 2026 &nbsp;&middot;&nbsp; Oslo, Norge</span>
+  <span class="datebar-tag">&#9670; Uavhengig &middot; Ubetalt &middot; Usensurert</span>
+</div>
+
+<!-- HERO ARTICLE -->
+<div class="hero-art" id="artikler">
+  <div class="hero-content">
+    <div class="hero-kicker">&#9670; Hovedsak &middot; Norsk statsfinans</div>
+    <h1 class="hero-h">Ved videreføring av dagens politikk er oljefondet <em>praktisk talt tomt</em> om 15&ndash;20 år.</h1>
+    <p class="hero-deck">Uttaket vokser 5,2% per år. Den kritiske grensen er 659 mrd. Vi er 80 mrd. unna allerede. I 2039 begynner fondet å tæres. Ingen kutt er vedtatt. Ingen endring er planlagt.</p>
+    <div class="hero-meta">9. april 2026 &nbsp;&middot;&nbsp; 15 min lesing &nbsp;&middot;&nbsp; Analyse</div>
+    <a href="oljefondet.html" class="read-btn">Les hele analysen &rarr;</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hs-num">2039</span>
+      <span class="hs-label">Første år fondet<br>tæres netto</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hs-num">1.230<br>mrd.</span>
+      <span class="hs-label">Uttaket i 2039<br>mot 659 mrd. maks</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hs-num">420<br>mrd.</span>
+      <span class="hs-label">Nødvendige kutt<br>per år fra 2039</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hs-num">0</span>
+      <span class="hs-label">Politiske kutt<br>vedtatt</span>
+    </div>
+  </div>
+</div>
+
+<!-- NUMBERS BAR -->
+<div class="numbers-bar">
+  <div class="nb">
+    <span class="nb-num">21.268<br>mrd.</span>
+    <span class="nb-label">Oljefondet nå</span>
+  </div>
+  <div class="nb">
+    <span class="nb-num">352 mrd.</span>
+    <span class="nb-label">Alderspensjon 2026<br>– største post</span>
+  </div>
+  <div class="nb">
+    <span class="nb-num">5%</span>
+    <span class="nb-label">Nordmenn som<br>faktisk betaler netto</span>
+  </div>
+  <div class="nb">
+    <span class="nb-num">3,8 mrd.</span>
+    <span class="nb-label">Mennesker lurt av<br>kopierte religioner</span>
+  </div>
+</div>
+
+<!-- SECTION LABEL -->
+<div class="section-label">
+  <span class="sl-text">&#9670; Alle artikler</span>
+  <span class="sl-line"></span>
+  <span class="sl-text">Norsk økonomi &middot; Statsfinans &middot; Samfunn</span>
+</div>
+
+<!-- ARTICLE GRID -->
+<div class="art-grid">
+
+  <div class="art-card">
+    <div class="art-kicker">&#9670; Statsfinans &middot; Skatteanalyse</div>
+    <h2 class="art-h">Det er ikke 12% som betaler.<br>Det er <em>5%.</em></h2>
+    <p class="art-deck">Alle snakker om at 12% av nordmenn bærer velferdsstatens finansiering. Feil. Når vi trekker fra alle som jobber i offentlig sektor og lever av sirkulerende skattekroner, sitter vi igjen med rundt 275.000 reelle nettoskattebetalere. Det er 5% av befolkningen.</p>
+    <div class="art-meta">9. april 2026 &nbsp;&middot;&nbsp; 12 min lesing</div>
+    <a href="femte-prosent.html" class="art-link">Les artikkelen &rarr;</a>
+  </div>
+
+  <div class="art-card">
+    <div class="art-kicker">&#9670; Religion &middot; Historisk analyse</div>
+    <h2 class="art-h">3,8 milliarder mennesker<br>er <em>lurt.</em></h2>
+    <p class="art-deck">Kristendommen, islam og jødedommen presenterer seg som originale åpenbaringer. Men alle tre er dokumentert kopiert fra minst 15 eldre religioner – sumerisk, babylonsk, egyptisk, gresk og mithraistisk. Vi går gjennom alle 15 med kilder.</p>
+    <div class="art-meta">9. april 2026 &nbsp;&middot;&nbsp; 18 min lesing</div>
+    <a href="religion.html" class="art-link">Les artikkelen &rarr;</a>
+  </div>
+
+</div>
+
+<!-- MANIFESTO -->
+<div class="manifesto" id="om">
+  <div class="manifesto-label">&#9670; Hvem er vi</div>
+  <div class="manifesto-text">
+    <strong>HelpTruth News er ikke en avis. Det er et korrektiv.</strong><br><br>
+    Vi mottar ingen pressestøtte. Vi har ingen annonsører. Vi har ingen redaktører som er redd for å miste tilgang til politikere. Vi publiserer tall, modeller og analyser som norske medier ikke tør eller gidder å lage selv &ndash; fordi de er for komplekse, for ubehagelige, eller for politisk sprengfarlige.<br><br>
+    Vi tar feil noen ganger. Når vi gjør det, sier vi det rett ut og korrigerer. Det gjør vi fordi vi er opptatt av sannheten &ndash; ikke av å ha rett.
+  </div>
+</div>
+
+<!-- EMAIL SIGNUP -->
+<div class="signup" id="signup">
+  <div class="signup-left">
+    <h2>Få sannheten<br>rett i<br><em>innboksen.</em></h2>
+    <p>Nye analyser publiseres løpende.<br>Ingen spam. Ingen reklame.<br>Bare tall og fakta ingen andre lager.</p>
+  </div>
+  <div class="signup-right">
+    <form class="signup-form" onsubmit="handleSignup(event)">
+      <input type="email" class="signup-field" placeholder="din@epost.no" required id="emailInput">
+      <button type="submit" class="signup-submit">Meld meg på &rarr;</button>
+      <div class="signup-success" id="signupSuccess">
+        ✓ Du er påmeldt. Velkommen til HelpTruth News.<br>
+        Du hører fra oss når neste analyse er klar.
+      </div>
+      <p class="signup-note">
+        Vi selger ikke data. Vi sender ikke spam.<br>
+        Du kan melde deg av når som helst.
+      </p>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <span class="ft-logo">HelpTruth</span>
+    Uavhengig norsk nyhetsanalyse.<br>
+    Ingen pressestøtte.<br>
+    Ingen filter.<br>
+    Bare sannheten.
+  </div>
+  <div class="ft">
+    <strong>Artikler</strong>
+    <a href="oljefondet.html">Oljefondet tomt om 20 år</a><br>
+    <a href="femte-prosent.html">Det er 5% som betaler</a><br>
+    <a href="religion.html">3,8 milliarder lurt</a>
+  </div>
+  <div class="ft">
+    <strong>Kontakt</strong>
+    redaksjon@helptruth.no<br>
+    Fjordalléen 16<br>
+    0250 Oslo<br><br>
+    <strong>Selskap</strong>
+    HelpTruth Media AS<br>
+    Org.nr: under registrering
+  </div>
+  <div class="ft-copy">
+    &copy; 2026 HelpTruth Media AS &nbsp;&middot;&nbsp; helptruth.no &nbsp;&middot;&nbsp;
+    Alt innhold er beskyttet av opphavsrett. Sitering tillatt med kildeangivelse. &nbsp;&middot;&nbsp;
+    Metode og kildehenvisninger finnes i hver enkelt artikkel.
+  </div>
+</footer>
+
+<script>
+function handleSignup(e) {
+  e.preventDefault();
+  const email = document.getElementById('emailInput').value;
+  const success = document.getElementById('signupSuccess');
+
+  // Lagre i localStorage (fungerer uten backend)
+  const emails = JSON.parse(localStorage.getItem('ht_emails') || '[]');
+  if (!emails.includes(email)) {
+    emails.push(email);
+    localStorage.setItem('ht_emails', JSON.stringify(emails));
+  }
+
+  // Vis bekreftelse
+  document.querySelector('.signup-form').style.opacity = '0.3';
+  success.style.display = 'block';
+
+  // Send til Formspree (bytt ut med din ID)
+  fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({email: email, source: 'helptruth.no'})
+  }).catch(() => {}); // Feiler lydløst hvis ikke konfigurert
+}
+</script>
+
+</body>
+</html>
